@@ -20,7 +20,7 @@ from selenium.common.exceptions import TimeoutException
 class AsxscraperSpider(scrapy.Spider):
     rotate_user_agent = True
     company_codes = []
-    with open('asx_scraper/urls_list_0-100.csv', 'r') as rf:
+    with open('asx_scraper/urls_list_0-499.csv', 'r') as rf:
         reader = csv.reader(rf)
         for i in reader:
             company_codes.extend([i[1]])
@@ -33,6 +33,8 @@ class AsxscraperSpider(scrapy.Spider):
     def __init__(self, *args, **kwargs):
         options = Options()
         options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--disable-gpu")
         options.add_argument("--disable-web-security")
         options.add_argument("--allow-insecure-localhost")
